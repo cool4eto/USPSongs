@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item android:id="@+id/song_search"
+    android:icon="@drawable/ic_search"
+    android:title="Search"
+    app:showAsAction="ifRoom|collapseActionView"
+    app:actionViewClass="androidx.appcompat.widget.SearchView"
+    />
+    <item android:id="@+id/yearAscending"
+        android:title="Order by year ascending"></item>
+    <item android:id="@+id/yearDescending"
+        android:title="Order by year descending"></item>
+    <item android:id="@+id/durationAscending"
+        android:title="Order by duration ascending"></item>
+    <item android:id="@+id/durationDescending"
+        android:title="Order by duration descending"></item>
+
+</menu>

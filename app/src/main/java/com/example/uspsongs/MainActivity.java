@@ -1,18 +1,25 @@
 package com.example.uspsongs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.uspsongs.Adapter.SongAdapter;
 import com.example.uspsongs.data.SongSource;
 import com.example.uspsongs.model.Song;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fillRecyclerView();
+        //adapter.songSort(1);
     }
     public void fillRecyclerView()
     {
@@ -64,5 +72,38 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addSong(song1);
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.serch_menu,menu);
+        MenuItem item=menu.findItem(R.id.song_search);
+        SearchView searchView= (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        switch (id)
+        {
+            case R.id.yearAscending:adapter.songSort(1);break;
+            case R.id.yearDescending:adapter.songSort(2);break;
+            case R.id.durationAscending:adapter.songSort(3);break;
+            case R.id.durationDescending:adapter.songSort(4);break;
+        }
+        return true;
     }
 }
