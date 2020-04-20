@@ -58,7 +58,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> implements
             final Song song=songs.get(position);
             holder.settName(song.getName());
             holder.settAuthor(song.getAuthor());
-            holder.settDuration(Integer.toString(song.getDuration()));
+            holder.settDuration(Integer.toString(song.getDuration()/60)+":"+Integer.toString(song.getDuration()%60));
             holder.settYear(Integer.toString(song.getYear()));
             holder.settGenre(song.getGenre());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
