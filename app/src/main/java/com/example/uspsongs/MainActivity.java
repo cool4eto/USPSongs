@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SongAdapter adapter;
     DatabaseHelper songDb;
-
     SongSource songs = new SongSource();
 
     private FloatingActionButton bt;

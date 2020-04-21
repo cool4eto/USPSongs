@@ -147,25 +147,42 @@ public class AddAndUpdate extends AppCompatActivity {
     }
     public void AddSong()//funkicq koqto dobawq pesen w bazata ot danni
     {
-        boolean isInserted=songDb.insertSong(eName.getText().toString(),eAuthor.getText().toString(),minsToSecs(eDuration.getText().toString()),eYear.getText().toString(),eGenre.getText().toString());
-        if(isInserted) {
-            Toast.makeText(AddAndUpdate.this, "Song Inserted", Toast.LENGTH_LONG).show();
-        }
+        try {
+            boolean isInserted=false;
+            if(!eName.getText().toString().equals("")&&!eAuthor.getText().toString().equals("")&&!eDuration.getText().toString().equals("")&&!eYear.getText().toString().equals("")&&!eGenre.getText().toString().equals(""))
+             isInserted=songDb.insertSong(eName.getText().toString(),eAuthor.getText().toString(),minsToSecs(eDuration.getText().toString()),eYear.getText().toString(),eGenre.getText().toString());
+            if(isInserted) {
+                Toast.makeText(AddAndUpdate.this, "Song Inserted", Toast.LENGTH_LONG).show();
+            }
             else {
-            Toast.makeText(AddAndUpdate.this, "Song NOT Inserted", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddAndUpdate.this, "Song NOT Inserted", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(AddAndUpdate.this, "Song NOT Inserted Check the fields", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
+
+
     }
     public void UpdateSong()
     {
-        boolean isUpdated=songDb.updateSong(Integer.toString(songToChange.getId()),eName.getText().toString(),eAuthor.getText().toString(),minsToSecs(eDuration.getText().toString()),eYear.getText().toString(),eGenre.getText().toString());
-        if(isUpdated)
-        {
-            Toast.makeText(AddAndUpdate.this, "Song Updated", Toast.LENGTH_LONG).show();
+        try {
+            boolean isUpdated=false;
+            if(!eName.getText().toString().equals("")&&!eAuthor.getText().toString().equals("")&&!eDuration.getText().toString().equals("")&&!eYear.getText().toString().equals("")&&!eGenre.getText().toString().equals(""))
+                 isUpdated=songDb.updateSong(Integer.toString(songToChange.getId()),eName.getText().toString(),eAuthor.getText().toString(),minsToSecs(eDuration.getText().toString()),eYear.getText().toString(),eGenre.getText().toString());
+            if(isUpdated&&!eName.getText().toString().equals("")&&!eAuthor.getText().toString().equals("")&&!eDuration.getText().toString().equals("")&&!eYear.getText().toString().equals("")&&!eGenre.getText().toString().equals(""))
+            {
+                Toast.makeText(AddAndUpdate.this, "Song Updated", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(AddAndUpdate.this, "Song NOT Updated", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(AddAndUpdate.this, "Song NOT Updated Check the fields", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
-        else
-        {
-            Toast.makeText(AddAndUpdate.this, "Song NOT Updated", Toast.LENGTH_LONG).show();
-        }
+
     }
     public void DeleteSong()
     {
