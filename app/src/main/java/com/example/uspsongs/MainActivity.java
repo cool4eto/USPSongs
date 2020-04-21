@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fillRecyclerView();
-        //adapter.songSort(1);
+        //komentar dobaven ot dancho
     }
     public void fillRecyclerView()
     {
